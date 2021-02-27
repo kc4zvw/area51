@@ -35,7 +35,8 @@ span.warning
 
 h1 {
   font-weight: bold;
-  color: darkblue;
+  /* color: darkblue; */
+  text-shadow: 5px 5px 10px black;
 }
 
 h2 {
@@ -43,8 +44,9 @@ h2 {
 }
 
 .www_title  { font-family: "Georgia,Palatino,Times,Roman";
-              font-size: 26pt;
-              text-align: center;}
+              font-size: 27pt;
+              text-shadow: 2px 2px 6px red;
+              text-align: center; }
 
 .www_sidebar  { text-align: center;
                font-family: "Georgia,Palatino,Times,Roman";
