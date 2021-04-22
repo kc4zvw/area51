@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.2.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+  <title>The Pascal examples</title>
+
+</head>
+
+<body>
+  <a href="/">HOME</a><br>
+
+  <br>
+  <h1 class="www_title">The FreePascal Project</h1>
+
+  <p>Add something here ...</a>
+  <p>The <a href="https://www.freepascal.org/">Free Pascal</a> &mdash; Open source compiler for Pascal and Object Pascal</p>
+
+  <pre>
+
+~kc4zvw: ./pascal_triangle
+Factorial program in FreePascal
+Enter a Number : 5
+
+The factorial of 5 = 120.
+
+        *** PASCAL TRIANGLE ***
+
+Enter a Number : 6
+1
+1 1
+1 2 1
+1 3 3 1
+1 4 6 4 1
+1 5 10 10 5 1
+~kc4zvw:
+
+  </pre>
+
+  <h2 class="www_sectiontitle">Pascal Triangle</h2>
+
+  <p>Add something here ...</p>
+
+  <pre>
+
+program PascalTriangle;
+
+const
+   numRows = 5;
+   Max_size = 20;
+
+var
+   fact   : Longint;
+   n      : integer;
+   number : integer;
+
+procedure Draw_Triangle(num : integer);
+
+var
+   i, j : integer;
+   n    : integer;
+   A    : array[1..Max_size, 1..Max_size] of integer;
+
+begin
+   n := num;
+   for i := 1 to n do begin
+      for j := 1 to i do begin
+         if (j = 1) or (i = j) then
+            A[i,j] := 1
+          else
+             begin
+                A[i,j] := A[i-1, j] + A[i-1, j-1];
+             end;
+      end;
+   end;
+   for i := 1 to n do begin
+      {Gotoxy(41-i,i);}
+      for j := 1 to i do
+         Write(A[i,j], ' ');
+      WriteLn
+   end;
+   { ReadLn; }
+end;
+
+function factorial(n : integer) : Longint;
+begin
+   if (n < 1) then
+      factorial := 1
+   else begin
+      factorial := n * factorial(n - 1);
+   end;
+end;
+
+
+(* # binomial theorem, n choose k *)
+
+function binomial(n,k : integer) : integer;
+begin
+   if (n - k) <= 0 then
+      binomial := 1;
+
+   if k <= 0 then
+      binomial := 1
+   else
+      binomial := Round(factorial(n) / (factorial(k) * factorial(n - k)));
+end;
+
+begin
+   number := 12;
+   { Clrscr;}
+   Write('Factorial program in FreePascal');
+   WriteLn;
+   Write('Enter a Number : ');
+   Readln(n);
+   fact := factorial(n);
+   WriteLn;
+   WriteLn('The factorial of ', n:1, ' = ', fact, '.');
+   WriteLn;
+   WriteLn(^I, '*** PASCAL TRIANGLE ***');
+   WriteLn;
+   Write('Enter a Number : ');
+   Readln(number);
+   Draw_Triangle(number);
+end.
+
+{ End of File }
+  </pre>
+
+  <h2 class="www_sectiontitle">Build Notes</h2>
+
+  <p>Add something here ...</p>
+
+  <h2 class="www_sectiontitle">Header 2</h2>
+
+  <p>Add something here ...</p>
+
+  <h2 class="www_sectiontitle">Header 3</h2>
+
+  <p>Add something here ...</p>
+
+  <h2 class="www_sectiontitle">Header 4</h2>
+
+  <p>Add something here ...</p>
+
+  <h2 class="www_sectiontitle">Header 5</h2>
+
+  <p>Add something here ...</p>
+
+  <br />
+  <br />
+  <br />
+
+  <hr>
+  <span class="www_footer">Revised: Sunday, April 11, 2021 at 23:44:39 PM (EDT)</span>
+</body>
+</html>

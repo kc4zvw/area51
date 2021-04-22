@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.2.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+  <title>The FORTRAN examples</title>
+
+</head>
+
+<body>
+  <a href="/">HOME</a><br>
+
+  <br>
+  <h1 class="www_title">The FORTRAN-90 Project</h1>
+
+  <p>Add something here ...</a>
+
+  <pre>
+
+~kc4zvw:
+
+  </pre>
+
+  <h2 class="www_sectiontitle">Notes</h2>
+
+  <p>Add something here ...</p>
+
+  <h2 class="www_sectiontitle">Parallel sieve of Erathostenes</h2>
+
+  <p>Add something here ...</p>
+
+  <pre>
+
+# EOF #
+  </pre>
+
+  <h2 class="www_sectiontitle">Header 3</h2>
+
+  <p>Add something here ...</p>
+
+  <h2 class="www_sectiontitle">The 'heapsort' sorting algorithm</h2>
+
+  <p>Add something here ...</p>
+
+<pre>
+kc4zvw@www: ./heapsort
+
+An example of the 'heapsort' sorting algorithm
+
+The array is [12, 11, 13, 5, 6, 7]
+The length of the array is: 6
+The array is [5, 6, 7, 11, 12, 13]
+
+Finished.
+
+kc4zvw@www:
+</pre>
+
+
+  <pre>
+//
+// $Id:$
+//
+
+
+pub fn heap_sort<T: Ord>(arr: &mut [T]) {
+    if arr.len() <= 1 {
+        return; // already sorted
+    }
+ 
+    heapify(arr);
+ 
+    for end in (1..arr.len()).rev() {
+        arr.swap(0, end);
+        move_down(&mut arr[..end], 0);
+    }
+}
+ 
+/// Convert `arr` into a max heap.
+fn heapify<T: Ord>(arr: &mut [T]) {
+    let last_parent = (arr.len() - 2) / 2;
+    for i in (0..=last_parent).rev() {
+        move_down(arr, i);
+    }
+}
+ 
+/// Move the element at `root` down until `arr` is a max heap again.
+///
+/// This assumes that the subtrees under `root` are valid max heaps already.
+fn move_down<T: Ord>(arr: &mut [T], mut root: usize) {
+    let last = arr.len() - 1;
+    loop {
+        let left = 2 * root + 1;
+        if left > last {
+            break;
+        }
+        let right = left + 1;
+        let max = if right <= last && arr[right] > arr[left] {
+            right
+        } else {
+            left
+        };
+ 
+        if arr[max] > arr[root] {
+            arr.swap(root, max);
+        }
+        root = max;
+    }
+}
+ 
+#[cfg(test)]
+mod tests {
+    use super::*;
+ 
+    #[test]
+    fn empty() {
+        let mut arr: Vec<i32> = Vec::new();
+        heap_sort(&mut arr);
+        assert_eq!(&arr, &[]);
+    }
+ 
+    #[test]
+    fn single_element() {
+        let mut arr = vec![1];
+        heap_sort(&mut arr);
+        assert_eq!(&arr, &[1]);
+    }
+ 
+    #[test]
+    fn sorted_array() {
+        let mut arr = vec![1, 2, 3, 4];
+        heap_sort(&mut arr);
+        assert_eq!(&arr, &[1, 2, 3, 4]);
+    }
+ 
+    #[test]
+    fn unsorted_array() {
+        let mut arr = vec![3, 4, 2, 1];
+        heap_sort(&mut arr);
+        assert_eq!(&arr, &[1, 2, 3, 4]);
+    }
+ 
+    #[test]
+    fn odd_number_of_elements() {
+        let mut arr = vec![3, 4, 2, 1, 7];
+        heap_sort(&mut arr);
+        assert_eq!(&arr, &[1, 2, 3, 4, 7]);
+    }
+ 
+    #[test]
+    fn repeated_elements() {
+        let mut arr = vec![542, 542, 542, 542];
+        heap_sort(&mut arr);
+        assert_eq!(&arr, &vec![542, 542, 542, 542]);
+    }
+}
+
+/// The main program starts here!
+
+fn main() {
+
+   let mut arr2 = [12, 11, 13, 5, 6, 7];
+
+   println!("An example of the 'heapsort' algorithm");
+   println!(" ");
+   println!("The array is {:?}", arr2);
+
+   println!("The length of the array is: {}", arr2.len());
+   heap_sort(&mut arr2);
+   println!("The array is {:?}", arr2);
+   println!("");
+   println!("Finished.");
+}
+
+/* End of File */
+  </pre>
+
+  <h2 class="www_sectiontitle">Header 5</h2>
+
+  <p>Add something here ...</p>
+
+  <br />
+  <br />
+  <br />
+
+  <hr>
+  <span class="www_footer">Revised: Wednesday, April 21, 2021 at 06:22:56 AM (EDT)</span>
+</body>
+</html>
