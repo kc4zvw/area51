@@ -2,8 +2,11 @@
 
 <html lang="en">
 <head>
-  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.2.0">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Intelligence,and the sweat of our browser">
+  <meta name="Description" content="programming examples for FORTRAN">
+
   <link rel="stylesheet" type="text/css" href="css/styles.css">
 
   <title>The FORTRAN examples</title>
@@ -14,7 +17,7 @@
   <a href="/">HOME</a><br>
 
   <br>
-  <h1 class="www_title">The FORTRAN-90 Project</h1>
+  <h1 class="www_title">The FORTRAN-90/95 Project</h1>
 
   <p>Add something here ...</a>
 
@@ -46,147 +49,142 @@
   <p>Add something here ...</p>
 
 <pre>
-kc4zvw@www: ./heapsort
 
-An example of the 'heapsort' sorting algorithm
+kc4zvw@www:~$ ./heapsort4
+ A program to heapsort an array of real numbers
 
-The array is [12, 11, 13, 5, 6, 7]
-The length of the array is: 6
-The array is [5, 6, 7, 11, 12, 13]
+ Unsorted array:
+     0.135926     0.357047     0.830519     0.809682     0.447455
+     0.822255     0.999484     0.599683     0.491596     0.743014
+     0.356010     0.746209     0.713839     0.548384     0.957996
+     0.364840     0.628396     0.441209     0.013950     0.131781
+     0.147675     0.817267     0.197695     0.890954     0.885719
+     0.647247     0.711633     0.326273     0.838796     0.895829
 
-Finished.
+ Sorted array:
+     0.013950     0.131781     0.135926     0.147675     0.197695
+     0.326273     0.356010     0.357047     0.364840     0.441209
+     0.447455     0.491596     0.548384     0.599683     0.628396
+     0.647247     0.711633     0.713839     0.743014     0.746209
+     0.809682     0.817267     0.822255     0.830519     0.838796
+     0.885719     0.890954     0.895829     0.957996     0.999484
 
-kc4zvw@www:
+ Finished.
+kc4zvw@www:~$
+
 </pre>
 
 
-  <pre>
-//
-// $Id:$
-//
+<pre>
+!
+!  An example of the heapsort algorithm in FORTRAN-90
+!
+!
+! $Id:$
+
+program Heapsort_Demo
+
+    implicit none
+
+    integer, parameter :: num = 30
+    real :: array(num)
+
+    call random_seed
+    call random_number(array)
+
+    write(*,*) "A program to heapsort an array of real numbers"
+    write(*,*)
+    write(*,*) "Unsorted array: "
+    call display_numbers(array)
+
+    call heapsort(array)
+
+    write(*,*) "Sorted array: "
+    call display_numbers(array)
+
+    write(*,*) "Finished."
+
+contains
+
+subroutine heapsort(a)
+
+    real, intent(in out) :: a(0:)
+    integer :: start, n, bottom
+    real :: temp
+
+    n = size(a)
+    do start = (n - 2) / 2, 0, -1
+        call siftdown(a, start, n);
+    end do
+   
+    do bottom = n - 1, 1, -1
+        temp = a(0)
+        a(0) = a(bottom)
+        a(bottom) = temp;
+        call siftdown(a, 0, bottom)
+    end do
+
+end subroutine heapsort
+
+subroutine siftdown(a, start, bottom)
+  
+    real, intent(in out) :: a(0:)
+    integer, intent(in) :: start, bottom
+    integer :: child, root
+    real :: temp
+
+    root = start
+    do while (root * 2 + 1 < bottom)
+        child = root * 2 + 1
+
+        if (child + 1 < bottom) then
+            if (a(child) < a(child+1)) child = child + 1
+        end if
+    
+        if (a(root) < a(child)) then
+            temp = a(child)
+            a(child) = a(root)
+            a(root) = temp
+            root = child
+        else
+            return
+        end if  
+    end do      
+    
+end subroutine siftdown
+
+subroutine display_numbers(a)
+
+    real, intent(in out) :: a(0:)
+    integer :: start, n
+    
+    n = size(a)
+    do start = 0, n - 1, 1
+        write(*, 100, advance='no') a(start)
+        if (mod(start, 5) == 4) write(*,*)
+    end do
+    write(*,*)
+
+100 format (' ', F12.6)
+
+end subroutine display_numbers
 
 
-pub fn heap_sort<T: Ord>(arr: &mut [T]) {
-    if arr.len() <= 1 {
-        return; // already sorted
-    }
- 
-    heapify(arr);
- 
-    for end in (1..arr.len()).rev() {
-        arr.swap(0, end);
-        move_down(&mut arr[..end], 0);
-    }
-}
- 
-/// Convert `arr` into a max heap.
-fn heapify<T: Ord>(arr: &mut [T]) {
-    let last_parent = (arr.len() - 2) / 2;
-    for i in (0..=last_parent).rev() {
-        move_down(arr, i);
-    }
-}
- 
-/// Move the element at `root` down until `arr` is a max heap again.
-///
-/// This assumes that the subtrees under `root` are valid max heaps already.
-fn move_down<T: Ord>(arr: &mut [T], mut root: usize) {
-    let last = arr.len() - 1;
-    loop {
-        let left = 2 * root + 1;
-        if left > last {
-            break;
-        }
-        let right = left + 1;
-        let max = if right <= last && arr[right] > arr[left] {
-            right
-        } else {
-            left
-        };
- 
-        if arr[max] > arr[root] {
-            arr.swap(root, max);
-        }
-        root = max;
-    }
-}
- 
-#[cfg(test)]
-mod tests {
-    use super::*;
- 
-    #[test]
-    fn empty() {
-        let mut arr: Vec<i32> = Vec::new();
-        heap_sort(&mut arr);
-        assert_eq!(&arr, &[]);
-    }
- 
-    #[test]
-    fn single_element() {
-        let mut arr = vec![1];
-        heap_sort(&mut arr);
-        assert_eq!(&arr, &[1]);
-    }
- 
-    #[test]
-    fn sorted_array() {
-        let mut arr = vec![1, 2, 3, 4];
-        heap_sort(&mut arr);
-        assert_eq!(&arr, &[1, 2, 3, 4]);
-    }
- 
-    #[test]
-    fn unsorted_array() {
-        let mut arr = vec![3, 4, 2, 1];
-        heap_sort(&mut arr);
-        assert_eq!(&arr, &[1, 2, 3, 4]);
-    }
- 
-    #[test]
-    fn odd_number_of_elements() {
-        let mut arr = vec![3, 4, 2, 1, 7];
-        heap_sort(&mut arr);
-        assert_eq!(&arr, &[1, 2, 3, 4, 7]);
-    }
- 
-    #[test]
-    fn repeated_elements() {
-        let mut arr = vec![542, 542, 542, 542];
-        heap_sort(&mut arr);
-        assert_eq!(&arr, &vec![542, 542, 542, 542]);
-    }
-}
+end program Heapsort_Demo
 
-/// The main program starts here!
+! ***** End of File *****
+</pre>
 
-fn main() {
-
-   let mut arr2 = [12, 11, 13, 5, 6, 7];
-
-   println!("An example of the 'heapsort' algorithm");
-   println!(" ");
-   println!("The array is {:?}", arr2);
-
-   println!("The length of the array is: {}", arr2.len());
-   heap_sort(&mut arr2);
-   println!("The array is {:?}", arr2);
-   println!("");
-   println!("Finished.");
-}
-
-/* End of File */
-  </pre>
-
-  <h2 class="www_sectiontitle">Header 5</h2>
+  <h2 class="www_sectiontitle">Miscellaneous</h2>
 
   <p>Add something here ...</p>
 
   <br />
   <br />
+  <footer></footer>
   <br />
 
   <hr>
-  <span class="www_footer">Revised: Wednesday, April 21, 2021 at 06:22:56 AM (EDT)</span>
+  <span class="www_footer">Revised: Friday, March 10, 2023 at 09:01:52 AM (EST)</span>
 </body>
 </html>
