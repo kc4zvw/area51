@@ -1,6 +1,6 @@
 # Area51
 
-##Advanced topics for deep study
+## Advanced topics for deep study
 
 A list of projects to complete and the current status
 
