@@ -22,6 +22,7 @@
   <p>Add something here ...</a>
   <p>The <a href="https://www.freepascal.org/">Free Pascal</a> &mdash; Open source compiler for Pascal and Object Pascal</p>
 
+  <div class="www_code">
   <pre>
 
 ~kc4zvw: ./pascal_triangle
@@ -42,11 +43,13 @@ Enter a Number : 6
 ~kc4zvw:
 
   </pre>
+  </div>
 
   <h2 class="www_sectiontitle">Pascal Triangle</h2>
 
   <p>Add something here ...</p>
 
+  <div class="www_code">
   <pre>
 
 program PascalTriangle;
@@ -90,7 +93,7 @@ end;
 
 function factorial(n : integer) : Longint;
 begin
-   if (n < 1) then
+   if (n &lt; 1) then
       factorial := 1
    else begin
       factorial := n * factorial(n - 1);
@@ -102,10 +105,10 @@ end;
 
 function binomial(n,k : integer) : integer;
 begin
-   if (n - k) <= 0 then
+   if (n - k) &lt;= 0 then
       binomial := 1;
 
-   if k <= 0 then
+   if k &lt;= 0 then
       binomial := 1
    else
       binomial := Round(factorial(n) / (factorial(k) * factorial(n - k)));
@@ -131,6 +134,7 @@ end.
 
 { End of File }
   </pre>
+  </div>
 
   <h2 class="www_sectiontitle">Build Notes</h2>
 
@@ -140,6 +144,7 @@ end.
 
   <p>Add something here ...</p>
 
+  <div class="www_code">
   <pre>
 
 program HeapSortDemo;
@@ -151,11 +156,11 @@ procedure HeapSort(var a: array of Integer);
   var
     Child, Tmp: Integer;
   begin
-    while Root * 2 + 1 <= Last do begin
+    while Root * 2 + 1 &lt; = Last do begin
       Child := Root * 2 + 1;
-      if (Child + 1 <= Last) and (a[Child] < a[Child + 1]) then
+      if (Child + 1 &lt;= Last) and (a[Child] &lt; a[Child + 1]) then
         Inc(Child);
-      if a[Root] < a[Child] then begin
+      if a[Root] &lt; a[Child] then begin
         Tmp := a[Root];
         a[Root] := a[Child];
         a[Child] := Tmp;
@@ -199,6 +204,7 @@ end.
 { vim: tabsort=3: nowrap: }
 
   </pre>
+  </div>
 
   <h2 class="www_sectiontitle">Header 3</h2>
 
@@ -215,7 +221,12 @@ end.
   <br />
   <br />
   <br />
-
+  <footer>
+    <div class="quote">
+      <span class="quote2">"A foolish faith in authority is the worst enemy of truth."<br> -Albert Einstein</span>
+    </div>
+  </footer>
+  <br>
   <hr>
   <span class="www_footer">Revised: Sunday, April 11, 2021 at 23:44:39 PM (EDT)</span>
 </body>

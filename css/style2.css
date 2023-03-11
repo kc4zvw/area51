@@ -9,6 +9,7 @@ a:visited { color: darkgreen; }
 div.c1 { text-align: center }
 div.c2 { margin-left: 2em }
 div.c3 { width: 750px; margin: auto; border: 0px solid; }
+div.header { width: 1025px; margin: auto; border: 0px solid; }
 div.node2 { text-align: left; }
 h1.main { color: #FFFF00; text-align: center }
 h2.c1 { color: green }

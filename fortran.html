@@ -31,7 +31,7 @@
 
   <p>Add something here ...</p>
 
-  <h2 class="www_sectiontitle">Parallel sieve of Erathostenes</h2>
+  <h2 class="www_subsection">Parallel sieve of Erathostenes</h2>
 
   <p>Add something here ...</p>
 
@@ -40,15 +40,16 @@
 # EOF #
   </pre>
 
-  <h2 class="www_sectiontitle">Header 3</h2>
+  <h2 class="www_subsection">Header 3</h2>
 
   <p>Add something here ...</p>
 
-  <h2 class="www_sectiontitle">The 'heapsort' sorting algorithm</h2>
+  <h2 class="www_subsection">The 'HeapSort' Algorithm</h2>
 
   <p>Add something here ...</p>
 
-<pre>
+  <div class="www_code">
+  <pre>
 
 kc4zvw@www:~$ ./heapsort4
  A program to heapsort an array of real numbers
@@ -72,9 +73,13 @@ kc4zvw@www:~$ ./heapsort4
  Finished.
 kc4zvw@www:~$
 
-</pre>
+  </pre>
+  </div>
 
 
+  <p>Add something here ...</p>
+
+<div class="www_code">
 <pre>
 !
 !  An example of the heapsort algorithm in FORTRAN-90
@@ -134,14 +139,14 @@ subroutine siftdown(a, start, bottom)
     real :: temp
 
     root = start
-    do while (root * 2 + 1 < bottom)
+    do while (root * 2 + 1 &lt; bottom)
         child = root * 2 + 1
 
-        if (child + 1 < bottom) then
-            if (a(child) < a(child+1)) child = child + 1
+        if (child + 1 &lt; bottom) then
+            if (a(child) &lt; a(child+1)) child = child + 1
         end if
     
-        if (a(root) < a(child)) then
+        if (a(root) &lt; a(child)) then
             temp = a(child)
             a(child) = a(root)
             a(root) = temp
@@ -173,17 +178,23 @@ end subroutine display_numbers
 end program Heapsort_Demo
 
 ! ***** End of File *****
-</pre>
+  </pre>
+  </div>
 
-  <h2 class="www_sectiontitle">Miscellaneous</h2>
+  <h2 class="www_subsection">Miscellaneous</h2>
 
   <p>Add something here ...</p>
 
-  <br />
-  <br />
-  <footer></footer>
-  <br />
-
+  <br>
+  <br>
+  <br>
+  <footer>
+    <div class="quote">
+      <span class="quote2">"A foolish faith in authority is the worst enemy of truth."<br> -Albert Einstein</span>
+    </div>
+  </footer>
+  <br>
+  <br>
   <hr>
   <span class="www_footer">Revised: Friday, March 10, 2023 at 09:01:52 AM (EST)</span>
 </body>

@@ -28,6 +28,9 @@ p.title {
   text-align: center;
 }
 
+div.quote { margin: 0 auto; text-align: center; }
+span.quote2 { color: blue; text-align: center; width: 90%; }
+
 span.warning
 {
 	color: red;
