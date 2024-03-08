@@ -19,7 +19,7 @@
   <br>
   <h1 class="www_title">The FORTRAN-90/95 Project</h1>
 
-  <p>Add something here ...</a>
+  <p>Add something here ...</p>
 
   <pre>
 
@@ -266,14 +266,14 @@ subroutine siftdown(a, start, bottom)
     real:: temp
 
     root = start
-    do while (root * 2 + 1 < bottom)
+    do while (root * 2 + 1 &lt; bottom)
         child = root * 2 + 1
 
-        if (child + 1 < bottom) then
-            if (a(child) < a(child + 1)) child = child + 1
+        if (child + 1 &lt; bottom) then
+            if (a(child) &lt; a(child + 1)) child = child + 1
         end if
     
-        if (a(root) < a(child)) then
+        if (a(root) &lt; a(child)) then
             temp = a(child)
             a(child) = a(root)
             a(root) = temp
